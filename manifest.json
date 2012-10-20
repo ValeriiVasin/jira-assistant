@@ -26,7 +26,7 @@
             "js/contentScript.js"
         ],
         "css": [ "css/content.css" ],
-        "matches": ["https://jira.sup.com/*"]
+        "matches": ["https://jira.sup.com/browse/LJ*"]
     }],
 
     "web_accessible_resources": [

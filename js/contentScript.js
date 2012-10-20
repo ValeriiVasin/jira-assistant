@@ -1,35 +1,65 @@
 // here will be content script of the plugin
 
-/**
- * @todo Research, how we could normally insert our group into the page
- */
+;(function ($) {
+    'use strict';
 
-function createCopyButton() {
-    var copyButton = $('<a />', {
-            href: '#',
-            title: 'Copy task title into the clipboard',
-            html: '<span class="icon copy-icon"></span><span class="trigger-text"> Copy Task Title</span>',
-            'class': 'toolbar-trigger'
-        }),
+    // title of the task
+    var title = $('.issue-header-content').find('p').text();
 
-        toolbarItem = $('<li />', { 'class': 'toolbar-item toolbar-item-copy' }).append(copyButton),
+    if (!title) {
+        return;
+    }
 
-        copiedItem = $('<span />', {
-                text: 'copied',
-                'class': 'toolbar-item-copy-message'
-            })
-            .appendTo(toolbarItem),
+    /**
+     * @todo Research, how we could normally insert our group into the page
+     */
+    function createCopyButton() {
+        var copyButton = $('<a />', {
+                href: '#',
+                title: 'Copy task title into the clipboard',
+                html: '<span class="icon copy-icon"></span><span class="trigger-text"> Copy Task Title</span>',
+                'class': 'toolbar-trigger'
+            }),
 
-        toolbarGroup = $('<ul />', { 'class': 'toolbar-group' }).append(toolbarItem);
+            toolbarItem = $('<li />', { 'class': 'toolbar-item toolbar-item-copy' }).append(copyButton),
 
-    copyButton.on('click', function (e) {
-        // handler for the click
-        e.preventDefault();
+            copiedItem = $('<span />', {
+                    text: 'copied',
+                    'class': 'toolbar-item-copy-message'
+                })
+                .appendTo(toolbarItem),
+
+            toolbarGroup = $('<ul />', { 'class': 'toolbar-group' }).append(toolbarItem);
+
+        copyButton.on('click', function (e) {
+            copy(function () {
+                copiedItem.fadeIn(70).delay(400).fadeOut(50);
+            });
+            e.preventDefault();
+        });
+
+        $('#opsbar-opsbar-transitions').after(toolbarGroup);
+    }
+
+    function copy(callback) {
+        chrome.extension.sendMessage({ copy: title }, function (response) {
+            if (response) {
+                callback();
+            }
+        });
+    }
+
+    // contents scripts are inserted after DOM is ready
+    // that's why we could use it right there
+    createCopyButton();
+
+    // messages listener
+    chrome.extension.onMessage.addListener(function (request, sender, sendResponse) {
+
+        // background scriptslogger
+        if ( request.log ) {
+            console.log.apply(console, request.log);
+        }
     });
 
-    $('#opsbar-opsbar-transitions').after(toolbarGroup);
-}
-
-// contents scripts are inserted after DOM is ready
-// that's why we could use it right there
-createCopyButton();
+}(jQuery));

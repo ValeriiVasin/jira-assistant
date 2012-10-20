@@ -1,0 +1,30 @@
+{
+    "name": "Jira Assistant",
+    "version": "1.0",
+    "manifest_version": 2,
+    "description": "Helps to interact with JIRA task tracker",
+    "browser_action": {
+        "default_icon": "images/jira.png"
+    },
+
+    "background": {
+        "scripts": [
+            "js/jquery-1.8.2.min.js",
+            "js/background.js"
+        ]
+    },
+
+    "permissions": [
+        "tabs",
+        "clipboardWrite",
+        "https://jira.sup.com/*"
+    ],
+
+    "content_scripts": [{
+        "js": [
+            "js/jquery-1.8.2.min.js",
+            "js/contentScript.js"
+        ],
+        "matches": ["https://jira.sup.com/*"]
+    }]
+}

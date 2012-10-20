@@ -11,6 +11,11 @@ And of course makes life better :)
 Just for now it's only feature I need. If you have some propositions, you are free to contact me and ask for them or do a pull request.
 
 # Install
-Download [stable version of the extension](https://dl.dropbox.com/s/qx5v6occdnya5cd/jira_assistant.crx?dl=1). And install it via double click.
+
+1. [Download](https://dl.dropbox.com/s/qx5v6occdnya5cd/jira_assistant.crx?dl=1) the extension file and save it to your computer.
+2. Click the wrench icon on the browser toolbar.
+3. Select Tools > Extensions.
+4. Locate the extension file on your computer and drag the file onto the Extensions page.
+5. Review the list of permissions in the dialog that appears. If you would like to proceed, click Install.
 
 *Extension is not for public usage right now and could be used only for [SUP Media](http://www.sup.com/en/index.html) JIRA tracking system. But you're free to tune it up yourself (fork and install unpacked). It will be fixed soon.*

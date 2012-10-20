@@ -25,6 +25,11 @@
             "js/jquery-1.8.2.min.js",
             "js/contentScript.js"
         ],
+        "css": [ "css/content.css" ],
         "matches": ["https://jira.sup.com/*"]
-    }]
+    }],
+
+    "web_accessible_resources": [
+        "images/copy.png"
+    ]
 }

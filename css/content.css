@@ -1,0 +1,4 @@
+.icon.copy-icon {
+    /* i18n abilities */
+    background-image: url('chrome-extension://__MSG_@@extension_id__/images/copy.png');
+}

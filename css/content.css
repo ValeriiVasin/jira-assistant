@@ -1,3 +1,16 @@
+.toolbar-item.toolbar-item-copy {
+    position: relative;
+}
+
+.toolbar-item-copy-message {
+    position: absolute;
+    color: green;
+    top: 3px;
+    right: -50px;
+    font-size: 15px;
+    display: none;
+}
+
 .icon.copy-icon {
     /* i18n abilities */
     background-image: url('chrome-extension://__MSG_@@extension_id__/images/copy.png');

@@ -11,7 +11,15 @@ function createCopyButton() {
             html: '<span class="icon copy-icon"></span><span class="trigger-text"> Copy Task Title</span>',
             'class': 'toolbar-trigger'
         }),
+
         toolbarItem = $('<li />', { 'class': 'toolbar-item toolbar-item-copy' }).append(copyButton),
+
+        copiedItem = $('<span />', {
+                text: 'copied',
+                'class': 'toolbar-item-copy-message'
+            })
+            .appendTo(toolbarItem),
+
         toolbarGroup = $('<ul />', { 'class': 'toolbar-group' }).append(toolbarItem);
 
     copyButton.on('click', function (e) {

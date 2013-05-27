@@ -12,7 +12,7 @@ Just for now it's only feature I need. If you have some propositions, you are fr
 
 # Install
 
-1. [Download](https://dl.dropbox.com/s/qx5v6occdnya5cd/jira_assistant.crx?dl=1) the extension file and save it to your computer.
+1. <a href="http://valeriivasin.com/extensions/jira_assistant/jira_assistant.crx" download="jira_assistant.crx">Download</a> the extension to your computer.
 2. Click the wrench icon on the browser toolbar.
 3. Select Tools > Extensions.
 4. Locate the extension file on your computer and drag the file onto the Extensions page.

@@ -37,7 +37,7 @@
         toolbarGroup.appendChild( toolbarItem );
 
         copyButton.addEventListener('click', function () {
-            copy(function () {
+            copyToClipboard(function () {
                 copiedItem.classList.add('toolbar-item-copy-message__visible');
                 setTimeout(function () {
                     copiedItem.classList.remove('toolbar-item-copy-message__visible');
@@ -50,7 +50,7 @@
             .insertBefore(toolbarGroup, lastToolbarGroup.nextSibling);
     }
 
-    function copy(callback) {
+    function copyToClipboard(callback) {
         chrome.extension.sendMessage({ copy: title }, function (response) {
             if ( response ) {
                 callback();

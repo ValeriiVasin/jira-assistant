@@ -6,7 +6,7 @@
     // title of the task
     var title = $('.issue-header-content').find('p').text();
 
-    if (!title) {
+    if ( !title ) {
         return;
     }
 
@@ -32,18 +32,22 @@
             toolbarGroup = $('<ul />', { 'class': 'toolbar-group' }).append(toolbarItem);
 
         copyButton.on('click', function (e) {
-            copy(function () {
-                copiedItem.fadeIn(70).delay(400).fadeOut(50);
-            });
             e.preventDefault();
+            copy(function () {
+                copiedItem
+                    .fadeIn(70)
+                    .delay(400)
+                    .fadeOut(50);
+            });
         });
 
-        $('#opsbar-opsbar-transitions').after(toolbarGroup);
+        $('#opsbar-opsbar-transitions')
+            .after(toolbarGroup);
     }
 
     function copy(callback) {
         chrome.extension.sendMessage({ copy: title }, function (response) {
-            if (response) {
+            if ( response ) {
                 callback();
             }
         });
@@ -52,14 +56,4 @@
     // contents scripts are inserted after DOM is ready
     // that's why we could use it right there
     createCopyButton();
-
-    // messages listener
-    chrome.extension.onMessage.addListener(function (request, sender, sendResponse) {
-
-        // background scriptslogger
-        if ( request.log ) {
-            console.log.apply(console, request.log);
-        }
-    });
-
 }(jQuery));

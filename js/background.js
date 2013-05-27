@@ -1,15 +1,7 @@
 // background script of the plugin
 
-;(function ($) {
+;(function () {
     'use strict';
-
-    function log() {
-        var args = Array.prototype.slice.call(arguments);
-
-        chrome.tabs.getSelected(null, function (tab) {
-            chrome.tabs.sendMessage(tab.id, { log: args });
-        });
-    }
 
     /**
      * Copy text into the clipboard using Google Chrome extension API
@@ -22,19 +14,20 @@
         copyDiv.contentEditable = true;
         document.body.appendChild(copyDiv);
         copyDiv.innerHTML = text;
-        copyDiv.unselectable = "off";
+        copyDiv.unselectable = 'off';
         copyDiv.focus();
         document.execCommand('selectAll');
-        status = document.execCommand("copy", false, null);
+        status = document.execCommand('copy', false, null);
         document.body.removeChild(copyDiv);
 
         return status;
     }
 
     chrome.extension.onMessage.addListener(function (request, sender, sendResponse) {
-
-        if (request.copy) {
-            sendResponse( copyToClipboard(request.copy) );
+        if ( request.copy ) {
+            sendResponse(
+                copyToClipboard( request.copy )
+            );
         }
     });
 

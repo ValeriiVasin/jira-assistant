@@ -8,10 +8,17 @@
     top: 3px;
     right: -50px;
     font-size: 15px;
-    display: none;
+    opacity: 0;
+
+    transition: opacity 1s transform 1s;
+}
+
+.toolbar-item-copy-message__visible {
+    opacity: 1;
 }
 
 .icon.copy-icon {
     /* i18n abilities */
     background-image: url('chrome-extension://__MSG_@@extension_id__/images/copy.png');
 }
+

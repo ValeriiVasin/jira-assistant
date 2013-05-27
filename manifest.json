@@ -12,7 +12,6 @@
 
     "background": {
         "scripts": [
-            "js/jquery-1.8.2.min.js",
             "js/background.js"
         ]
     },
@@ -25,7 +24,6 @@
 
     "content_scripts": [{
         "js": [
-            "js/jquery-1.8.2.min.js",
             "js/contentScript.js"
         ],
         "css": [ "css/content.css" ],

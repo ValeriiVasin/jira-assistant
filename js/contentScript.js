@@ -1,10 +1,10 @@
 // here will be content script of the plugin
 
-;(function ($) {
+;(function () {
     'use strict';
 
     // title of the task
-    var title = $('.issue-header-content').find('p').text();
+    var title = document.querySelector('.issue-header-content p').innerText;
 
     if ( !title ) {
         return;
@@ -14,35 +14,40 @@
      * @todo Research, how we could normally insert our group into the page
      */
     function createCopyButton() {
-        var copyButton = $('<a />', {
-                href: '#',
-                title: 'Copy task title into the clipboard',
-                html: '<span class="icon copy-icon"></span><span class="trigger-text"> Copy Task Title</span>',
-                'class': 'toolbar-trigger'
-            }),
+        var copyButton = document.createElement('a'),
+            toolbarItem = document.createElement('li'),
+            copiedItem = document.createElement('span'),
+            toolbarGroup = document.createElement('ul'),
+            lastToolbarGroup = document.getElementById('opsbar-opsbar-transitions');
 
-            toolbarItem = $('<li />', { 'class': 'toolbar-item toolbar-item-copy' }).append(copyButton),
+        copyButton.href = 'javascript:void(0);';
+        copyButton.title = 'Copy task title into the clipboard';
+        copyButton.innerHTML = '<span class="icon copy-icon"></span><span class="trigger-text"> Copy Task Title</span>';
+        copyButton.className = 'toolbar-trigger';
 
-            copiedItem = $('<span />', {
-                    text: 'copied',
-                    'class': 'toolbar-item-copy-message'
-                })
-                .appendTo(toolbarItem),
+        toolbarItem.className = 'toolbar-item toolbar-item-copy';
+        toolbarItem.appendChild( copyButton );
 
-            toolbarGroup = $('<ul />', { 'class': 'toolbar-group' }).append(toolbarItem);
+        copiedItem.innerText = 'copied';
+        copiedItem.className = 'toolbar-item-copy-message';
 
-        copyButton.on('click', function (e) {
-            e.preventDefault();
+        toolbarItem.appendChild( copiedItem );
+
+        toolbarGroup.className = 'toolbar-group';
+        toolbarGroup.appendChild( toolbarItem );
+
+        copyButton.addEventListener('click', function () {
             copy(function () {
-                copiedItem
-                    .fadeIn(70)
-                    .delay(400)
-                    .fadeOut(50);
+                copiedItem.classList.add('toolbar-item-copy-message__visible');
+                setTimeout(function () {
+                    copiedItem.classList.remove('toolbar-item-copy-message__visible');
+                }, 450);
             });
         });
 
-        $('#opsbar-opsbar-transitions')
-            .after(toolbarGroup);
+        // insert created toolbar after last one
+        lastToolbarGroup.parentNode
+            .insertBefore(toolbarGroup, lastToolbarGroup.nextSibling);
     }
 
     function copy(callback) {
@@ -56,4 +61,4 @@
     // contents scripts are inserted after DOM is ready
     // that's why we could use it right there
     createCopyButton();
-}(jQuery));
+}());

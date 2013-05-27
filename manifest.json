@@ -3,6 +3,9 @@
     "version": "1.0",
     "manifest_version": 2,
     "description": "Helps to interact with JIRA task tracker",
+
+    "update_url": "http://valeriivasin.com/extensions/jira_assistant/updates.xml",
+
     "browser_action": {
         "default_icon": "images/jira.png"
     },

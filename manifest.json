@@ -5,8 +5,6 @@
     "description": "Helps to interact with JIRA task tracker",
     "icons": { "128": "images/jira.png" },
 
-    "update_url": "http://valeriivasin.com/extensions/jira_assistant/updates.xml",
-
     "browser_action": {
         "default_icon": "images/jira.png"
     },
